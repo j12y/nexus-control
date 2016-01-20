@@ -12,6 +12,7 @@ if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
       echo "Submitting to staging."
       export CONTENT_STORE_URL=https://staging.developer.rackspace.com:9000/
       export CONTENT_STORE_APIKEY=${KEY1}${KEY2}${KEY3}
+      export CONTENT_STORE_TLS_VERIFY="false"
       export PUBLISH="true"
       ;;
     *)

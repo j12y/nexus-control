@@ -15,9 +15,17 @@
 {% set productURL = deconst.content.envelope.metadata.product_url %}
 
 {# if we don't have a product_url to work with #}
-{% if not productURL  %}
-    {% set productURL = deconst.content.envelope.metadata.product.replace(" ", "-").toLowerCase() %}
-    {% set productURL = productURL.replace("rackspace-private-cloud", "rpc") %}
+{% if not productURL %}
+    {% if product %}
+        {% set productURL = deconst.content.envelope.metadata.product.replace(" ", "-").toLowerCase() %}
+        {% set productURL = productURL.replace("rackspace-private-cloud", "rpc") %}
+        {% set productURL = productURL.replace("^microsoft-", "") %}
+        {% set productURL = productURL.replace("powered-by-", "") %}
+        {% set productURL = productURL.replace("cloud-platform$", "") %}
+    {% else %}
+        {# just go to /how-to/ homepage #}
+        {% set productURL = "" %}
+    {% endif %}
 {% endif %}
 
 <ul class="area">
